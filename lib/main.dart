@@ -59,7 +59,7 @@ class _HomeState extends State<Home> {
 
  Future<void> loadmovies()async{
     TMDB tmdb=TMDB(ApiKeys(apiKey, readaccesstoken),
-    logConfig: ConfigLogger(
+    logConfig: const ConfigLogger(
         showLogs: true,
       showErrorLogs: true
     ));
