@@ -160,27 +160,25 @@ class _DescriptionState extends State<Description> {
                  left:10,
                right:10
              ),),
-             Flexible(
-               child: Container(
-                 decoration: BoxDecoration(
-                   color: Colors.grey.withOpacity(0.5),
-                   borderRadius: BorderRadius.circular(20),
-                 ),
-                 child: Padding(
-                   padding: const EdgeInsets.symmetric(
-                     vertical: 15,
-                     horizontal: 15,
-                   ),
-                   child: Text(
-                       desc,
-                       style: const TextStyle(
-                           color: Colors.white,
-                           fontSize: 18,
-                       )
-                   ),
+             Container(
+               decoration: BoxDecoration(
+                 color: Colors.grey.withOpacity(0.5),
+                 borderRadius: BorderRadius.circular(20),
                ),
+               child: Padding(
+                 padding: const EdgeInsets.symmetric(
+                   vertical: 15,
+                   horizontal: 15,
+                 ),
+                 child: Text(
+                     desc,
+                     style: const TextStyle(
+                         color: Colors.white,
+                         fontSize: 18,
+                     )
+                 ),
              ),
-           ),
+             ),
            Padding(
              padding:const EdgeInsets.only(
                  top:10.0,
