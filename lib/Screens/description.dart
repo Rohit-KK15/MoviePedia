@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:ionicons/ionicons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tmdb_api/tmdb_api.dart';
@@ -81,6 +81,27 @@ class _DescriptionState extends State<Description> {
    @override
    Widget build(BuildContext context) {
      return Scaffold(
+       // appBar: AppBar(
+       //   elevation: 0.0,
+       //   backgroundColor: Colors.transparent,
+       //   leading: IconButton(
+       //     icon: const Icon(
+       //         Ionicons.chevron_back_outline,
+       //         color: Colors.white,
+       //         size: 35,
+       //     ),
+       //     onPressed: (){
+       //       Navigator.pop( context );
+       //     },
+       //   ),
+       //   title: Text(
+       //     name,
+       //     style: GoogleFonts.alumniSans(
+       //       fontSize: 35.0,
+       //       fontWeight: FontWeight.bold,
+       //     ),
+       //   ),
+       // ),
        backgroundColor: Colors.black,
        body: ListView(
          children: [
@@ -94,6 +115,18 @@ class _DescriptionState extends State<Description> {
                        width: MediaQuery.of(context).size.width,
                        child: Image.network(bannerurl, fit: BoxFit.cover,),
                      )
+                 ),
+                 Positioned(
+                   top: 10,
+                   child: IconButton(
+                     icon: const Icon(
+                         Ionicons.chevron_back_outline,
+                         size: 35,
+                     ),
+                     onPressed: (){
+                     Navigator.pop(context);
+                     },
+                   ),
                  ),
                  Positioned(
                    bottom: 10,
@@ -208,7 +241,7 @@ class _DescriptionState extends State<Description> {
                  const CircularProgressIndicator(),
                ] else ...[
                          SizedBox(
-                           height: 200,
+                           height: 220,
                            child: ListView.builder(
                                scrollDirection: Axis.horizontal,
                                itemCount: cast.length,
@@ -300,7 +333,7 @@ class _DescriptionState extends State<Description> {
      const CircularProgressIndicator(),
      ] else ...[
                          SizedBox(
-                           height: 200,
+                           height: 220,
                            child: ListView.builder(
                                scrollDirection: Axis.horizontal,
                                itemCount: crew.length,
