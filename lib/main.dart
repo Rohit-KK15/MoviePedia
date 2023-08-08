@@ -1,4 +1,3 @@
-import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project2/Screens/search.dart';
@@ -8,13 +7,15 @@ import 'package:project2/widgets/trending.dart';
 import 'package:project2/widgets/tv.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
-void main()=>runApp(new MyApp());
+void main()=>runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      home: Home(),
+      home: const Home(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
@@ -41,9 +42,9 @@ class _HomeState extends State<Home> {
   int selectedIndex = 0;
   String page="Home";
   final List<Text> widgetOptions = [
-    Text('Home'),
-    Text('Explore'),
-    Text('Watch Later'),
+    const Text('Home'),
+    const Text('Explore'),
+    const Text('Watch Later'),
   ];
   final String apiKey='398dd2815165a8a82bc1f26f61e23970';
   final String readaccesstoken='eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOThkZDI4MTUxNjVhOGE4MmJjMWYyNmY2MWUyMzk3MCIsInN1YiI6IjYzOWYxN2RiNjg4Y2QwMDBhOWVlODkxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VsIgSdG7Bc-F9iWjfYKNTUJKbVebSHqklJjdlcnNjjc';
@@ -145,11 +146,11 @@ class _HomeState extends State<Home> {
     }
     print(index);
     if(page!=lbl && index==0) {
-      Navigator.push(context,MaterialPageRoute(builder: (context) =>MyApp()));
+      Navigator.push(context,MaterialPageRoute(builder: (context) =>const MyApp()));
     } else if(page!=lbl && index==1) {
-      Navigator.push(context,MaterialPageRoute(builder: (context) =>SearchPage()));
+      Navigator.push(context,MaterialPageRoute(builder: (context) =>const SearchPage()));
     } else if(page!=lbl && index==2) {
-      Navigator.push(context,MaterialPageRoute(builder: (context) =>watchLater()));
+      Navigator.push(context,MaterialPageRoute(builder: (context) =>const watchLater()));
     }
   }
 
