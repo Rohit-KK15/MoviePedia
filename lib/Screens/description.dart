@@ -187,13 +187,13 @@ class _DescriptionState extends State<Description> {
                ),
              ),
            ),
-           const Padding(
-             padding: EdgeInsets.only(
+           Padding(
+             padding: const EdgeInsets.only(
                  top:50.0,
                  left:10,
                right:10
-             ),),
-             Container(
+             ),
+             child: Container(
                decoration: BoxDecoration(
                  color: Colors.grey.withOpacity(0.5),
                  borderRadius: BorderRadius.circular(20),
@@ -212,6 +212,7 @@ class _DescriptionState extends State<Description> {
                  ),
              ),
              ),
+           ),
            Padding(
              padding:const EdgeInsets.only(
                  top:10.0,
