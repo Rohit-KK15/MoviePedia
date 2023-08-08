@@ -55,6 +55,7 @@ class _DescriptionState extends State<Description> {
       setState((){
         cast=credits['cast'];
         crew=credits['crew'];
+        _isLoading = false;
       });
       print(cast);
       print(crew);
@@ -71,11 +72,6 @@ class _DescriptionState extends State<Description> {
   void initState(){
     loadCredits();
     super.initState();
-    Timer(const Duration(seconds: 1), () {
-      setState(() {
-        _isLoading = false;
-      });
-    });
   }
 
    @override
