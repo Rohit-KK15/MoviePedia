@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project2/Screens/search.dart';
 import 'package:project2/Screens/watchLater.dart';
-import 'package:project2/utils/text.dart';
 import 'package:project2/widgets/toprated.dart';
-import 'package:project2/widgets/topratedtv.dart';
 import 'package:project2/widgets/trending.dart';
 import 'package:project2/widgets/tv.dart';
 import 'package:tmdb_api/tmdb_api.dart';
@@ -93,7 +91,6 @@ class _HomeState extends State<Home> {
             fontWeight: FontWeight.bold,
           )
         )
-        // title: modified_text(text: "BINGE", colour: Colors.white, size: 27.0)
       ),
       body: RefreshIndicator(
         backgroundColor: Colors.black,
@@ -107,7 +104,6 @@ class _HomeState extends State<Home> {
             TrendingMovies(trending: trendingmovies),
             TV(tv: tv),
             Toprated(toprated: topratedmovies),
-            // TopratedTV(topratedtv: topratedTv),
           ],
         ),
       ),
@@ -140,16 +136,21 @@ class _HomeState extends State<Home> {
       selectedIndex = index;
     });
     String lbl;
-    if(selectedIndex==0)lbl="Home";
-    else if(selectedIndex==1)lbl="Search";
-    else lbl="Watch Later";
+    if(selectedIndex==0) {
+      lbl="Home";
+    } else if(selectedIndex==1) {
+      lbl="Search";
+    } else {
+      lbl="Watch Later";
+    }
     print(index);
-    if(page!=lbl && index==0)Navigator.push(context,MaterialPageRoute(builder: (context) =>MyApp()));
-    else if(page!=lbl && index==1)Navigator.push(context,MaterialPageRoute(builder: (context) =>SearchPage()));
-    else if(page!=lbl && index==2)Navigator.push(context,MaterialPageRoute(builder: (context) =>watchLater()));
+    if(page!=lbl && index==0) {
+      Navigator.push(context,MaterialPageRoute(builder: (context) =>MyApp()));
+    } else if(page!=lbl && index==1) {
+      Navigator.push(context,MaterialPageRoute(builder: (context) =>SearchPage()));
+    } else if(page!=lbl && index==2) {
+      Navigator.push(context,MaterialPageRoute(builder: (context) =>watchLater()));
+    }
   }
 
-  // Future<void> _refresh() async {
-  //   loadmovies();
-  // }
 }
