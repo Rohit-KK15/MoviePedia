@@ -81,27 +81,6 @@ class _DescriptionState extends State<Description> {
    @override
    Widget build(BuildContext context) {
      return Scaffold(
-       // appBar: AppBar(
-       //   elevation: 0.0,
-       //   backgroundColor: Colors.transparent,
-       //   leading: IconButton(
-       //     icon: const Icon(
-       //         Ionicons.chevron_back_outline,
-       //         color: Colors.white,
-       //         size: 35,
-       //     ),
-       //     onPressed: (){
-       //       Navigator.pop( context );
-       //     },
-       //   ),
-       //   title: Text(
-       //     name,
-       //     style: GoogleFonts.alumniSans(
-       //       fontSize: 35.0,
-       //       fontWeight: FontWeight.bold,
-       //     ),
-       //   ),
-       // ),
        backgroundColor: Colors.black,
        body: ListView(
          children: [
