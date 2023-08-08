@@ -146,11 +146,11 @@ class _HomeState extends State<Home> {
     }
     print(index);
     if(page!=lbl && index==0) {
-      Navigator.push(context,MaterialPageRoute(builder: (context) =>const MyApp()));
+      Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) =>const MyApp()));
     } else if(page!=lbl && index==1) {
-      Navigator.push(context,MaterialPageRoute(builder: (context) =>const SearchPage()));
+      Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) =>const SearchPage()));
     } else if(page!=lbl && index==2) {
-      Navigator.push(context,MaterialPageRoute(builder: (context) =>const watchLater()));
+      Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) =>const watchLater()));
     }
   }
 
