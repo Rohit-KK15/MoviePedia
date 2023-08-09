@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:project2/Screens/search.dart';
 import 'package:project2/Screens/watchLater.dart';
 import 'package:tmdb_api/tmdb_api.dart';
@@ -91,7 +92,42 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        child: const Padding(
+          padding: EdgeInsets.only(
+              top: 10,
+              left: 20,
+            right: 20
+          ),
+          child: GNav(
+            // duration: Duration(milliseconds: 1000),
+            activeColor: const Color(0xffD22B2B),
+            backgroundColor: Colors.black,
+            gap: 8,
+            // tabBackgroundColor: Color(0xffD22B2B),
+            // tabBackgroundColor: Colors.grey.shade900,
+            padding: EdgeInsets.all(16),
+            color: Colors.white,
+            iconSize: 30,
+            tabs: [
+              GButton(
+                  icon: Icons.home,
+                  text: 'Home',
+              ),
+              GButton(
+                  icon: Icons.search,
+                  text: 'Explore',
+              ),
+              GButton(
+                  icon: Icons.bookmark,
+                  text: 'WatchList'
+              ),
+            ],
 
+          ),
+        ),
+      ),
       // bottomNavigationBar: BottomNavigationBar(
       //   items: const <BottomNavigationBarItem>[
       //     BottomNavigationBarItem(
