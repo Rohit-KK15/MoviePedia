@@ -223,6 +223,7 @@ class _DescriptionState extends State<Description> {
                                itemCount: cast.length,
                                itemBuilder: (context, index){
                                  if(cast[index]['profile_path']==null) {
+
                                    return InkWell(
                                        child: cast[index]['name'] != null ? Container(
                                          padding: const EdgeInsets.all(5),
@@ -236,7 +237,7 @@ class _DescriptionState extends State<Description> {
                                                    borderRadius: BorderRadius.circular(100),
                                                    image: const DecorationImage(
                                                      image: AssetImage(
-                                                         'images/empty_profile.jpg'
+                                                         'assets/images/empty_profile.jpg'
                                                      ), fit: BoxFit.fill,
                                                    )
                                                ),
@@ -271,12 +272,26 @@ class _DescriptionState extends State<Description> {
                                                decoration: BoxDecoration(
                                                    borderRadius: BorderRadius.circular(100),
                                                    image: DecorationImage(
-                                                     image: NetworkImage(
-                                                         'https://image.tmdb.org/t/p/w500' +
-                                                             cast[index]['profile_path']
-                                                     ), fit: BoxFit.fill,
-                                                   )
-                                               ),
+                                                           image: NetworkImage(
+                                                           'https://image.tmdb.org/t/p/w500' +
+                                                                  cast[index]['profile_path']
+                                                       ),fit: BoxFit.fill)
+                                               )
+
+                                                   // image: DecorationImage(
+                                                   //       image: NetworkImage(
+                                                   //       'https://image.tmdb.org/t/p/w500' +
+                                                   //              cast[index]['profile_path']
+                                                   //   ),fit: BoxFit.fill):
+                                                   //   // image: cast[index]['profile_path'] != null? NetworkImage(
+                                                   //   //     'https://image.tmdb.org/t/p/w500' +
+                                                   //   //         cast[index]['profile_path']):
+                                                   //   // // ),fit: BoxFit.fill :
+                                                   //   //  AssetImage(
+                                                   //   //     'images/empty_profile.jpg'
+                                                   //   // ), fit: BoxFit.fill,
+                                                   // )
+                                               // ),
                                              ),
                                              const SizedBox(height: 1,),
                                              Text(
@@ -328,7 +343,7 @@ class _DescriptionState extends State<Description> {
                                                    borderRadius: BorderRadius.circular(100),
                                                    image: const DecorationImage(
                                                      image: AssetImage(
-                                                         'images/moviepedia.jpg'
+                                                         '../assets/images/empty_profile.jpg'
                                                      ), fit: BoxFit.cover,
                                                    )
                                                ),
