@@ -222,43 +222,43 @@ class _DescriptionState extends State<Description> {
                                scrollDirection: Axis.horizontal,
                                itemCount: cast.length,
                                itemBuilder: (context, index){
-                                 if(cast[index]['profile_path']==null) {
-
-                                   return InkWell(
-                                       child: cast[index]['name'] != null ? Container(
-                                         padding: const EdgeInsets.all(5),
-                                         width: 130,
-                                         child: Column(
-                                           children: [
-                                             Container(
-                                               height: 100,
-                                               width: 100,
-                                               decoration: BoxDecoration(
-                                                   borderRadius: BorderRadius.circular(100),
-                                                   image: const DecorationImage(
-                                                     image: AssetImage(
-                                                         'assets/images/empty_profile.jpg'
-                                                     ), fit: BoxFit.fill,
-                                                   )
-                                               ),
-                                             ),
-                                             const SizedBox(height: 1,),
-                                             Text(
-                                                 cast[index]['name'] != null
-                                                     ? cast[index]['name'] + "\n(" +
-                                                     cast[index]['character'] + ")"
-                                                     : 'Loading..',
-                                                 style: GoogleFonts.breeSerif(
-                                                     color: Colors.white,
-                                                     fontSize: 15.0
-                                                 )
-                                             )
-                                           ],
-                                         ),
-                                       ) : Container()
-                                   );
-                                 }
-                                 else
+                                 // if(cast[index]['profile_path']==null) {
+                                 //
+                                 //   return InkWell(
+                                 //       child: cast[index]['name'] != null ? Container(
+                                 //         padding: const EdgeInsets.all(5),
+                                 //         width: 130,
+                                 //         child: Column(
+                                 //           children: [
+                                 //             Container(
+                                 //               height: 100,
+                                 //               width: 100,
+                                 //               decoration: BoxDecoration(
+                                 //                   borderRadius: BorderRadius.circular(100),
+                                 //                   image: const DecorationImage(
+                                 //                     image: AssetImage(
+                                 //                         'assets/images/empty_profile.jpg'
+                                 //                     ), fit: BoxFit.fill,
+                                 //                   )
+                                 //               ),
+                                 //             ),
+                                 //             const SizedBox(height: 1,),
+                                 //             Text(
+                                 //                 cast[index]['name'] != null
+                                 //                     ? cast[index]['name'] + "\n(" +
+                                 //                     cast[index]['character'] + ")"
+                                 //                     : 'Loading..',
+                                 //                 style: GoogleFonts.breeSerif(
+                                 //                     color: Colors.white,
+                                 //                     fontSize: 15.0
+                                 //                 )
+                                 //             )
+                                 //           ],
+                                 //         ),
+                                 //       ) : Container()
+                                 //   );
+                                 // }
+                                 if(cast[index]['profile_path'] != null)
                                  {
                                    return InkWell(
                                        child: cast[index]['name'] != null ? Container(
@@ -276,22 +276,7 @@ class _DescriptionState extends State<Description> {
                                                            'https://image.tmdb.org/t/p/w500' +
                                                                   cast[index]['profile_path']
                                                        ),fit: BoxFit.fill)
-                                               )
-
-                                                   // image: DecorationImage(
-                                                   //       image: NetworkImage(
-                                                   //       'https://image.tmdb.org/t/p/w500' +
-                                                   //              cast[index]['profile_path']
-                                                   //   ),fit: BoxFit.fill):
-                                                   //   // image: cast[index]['profile_path'] != null? NetworkImage(
-                                                   //   //     'https://image.tmdb.org/t/p/w500' +
-                                                   //   //         cast[index]['profile_path']):
-                                                   //   // // ),fit: BoxFit.fill :
-                                                   //   //  AssetImage(
-                                                   //   //     'images/empty_profile.jpg'
-                                                   //   // ), fit: BoxFit.fill,
-                                                   // )
-                                               // ),
+                                               ),
                                              ),
                                              const SizedBox(height: 1,),
                                              Text(
@@ -329,42 +314,7 @@ class _DescriptionState extends State<Description> {
                                scrollDirection: Axis.horizontal,
                                itemCount: crew.length,
                                itemBuilder: (context, index){
-                                 if(crew[index]['profile_path']==null) {
-                                   return InkWell(
-                                       child: crew[index]['name'] != null ? Container(
-                                         padding: const EdgeInsets.all(5),
-                                         width: 130,
-                                         child: Column(
-                                           children: [
-                                             Container(
-                                               height: 100,
-                                               width: 100,
-                                               decoration: BoxDecoration(
-                                                   borderRadius: BorderRadius.circular(100),
-                                                   image: const DecorationImage(
-                                                     image: AssetImage(
-                                                         '../assets/images/empty_profile.jpg'
-                                                     ), fit: BoxFit.cover,
-                                                   )
-                                               ),
-                                             ),
-                                             const SizedBox(height: 1,),
-                                             Text(
-                                                 crew[index]['name'] != null
-                                                     ? crew[index]['name'] + "\n(" +
-                                                     crew[index]['job'] + ")"
-                                                     : 'Loading..',
-                                                 style: GoogleFonts.breeSerif(
-                                                     color: Colors.white,
-                                                     fontSize: 15.0
-                                                 )
-                                             )
-                                           ],
-                                         ),
-                                       ) : Container()
-                                   );
-                                 }
-                                 else
+                                 if(crew[index]['profile_path'] != null)
                                  {
                                    return InkWell(
                                        child: crew[index]['name'] != null ? Container(
