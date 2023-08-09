@@ -97,6 +97,7 @@ class _DescriptionState extends State<Description> {
                      icon: const Icon(
                          Ionicons.chevron_back_outline,
                          size: 35,
+                       color: Colors.white,
                      ),
                      onPressed: (){
                      Navigator.pop(context);
@@ -222,42 +223,6 @@ class _DescriptionState extends State<Description> {
                                scrollDirection: Axis.horizontal,
                                itemCount: cast.length,
                                itemBuilder: (context, index){
-                                 // if(cast[index]['profile_path']==null) {
-                                 //
-                                 //   return InkWell(
-                                 //       child: cast[index]['name'] != null ? Container(
-                                 //         padding: const EdgeInsets.all(5),
-                                 //         width: 130,
-                                 //         child: Column(
-                                 //           children: [
-                                 //             Container(
-                                 //               height: 100,
-                                 //               width: 100,
-                                 //               decoration: BoxDecoration(
-                                 //                   borderRadius: BorderRadius.circular(100),
-                                 //                   image: const DecorationImage(
-                                 //                     image: AssetImage(
-                                 //                         'assets/images/empty_profile.jpg'
-                                 //                     ), fit: BoxFit.fill,
-                                 //                   )
-                                 //               ),
-                                 //             ),
-                                 //             const SizedBox(height: 1,),
-                                 //             Text(
-                                 //                 cast[index]['name'] != null
-                                 //                     ? cast[index]['name'] + "\n(" +
-                                 //                     cast[index]['character'] + ")"
-                                 //                     : 'Loading..',
-                                 //                 style: GoogleFonts.breeSerif(
-                                 //                     color: Colors.white,
-                                 //                     fontSize: 15.0
-                                 //                 )
-                                 //             )
-                                 //           ],
-                                 //         ),
-                                 //       ) : Container()
-                                 //   );
-                                 // }
                                  if(cast[index]['profile_path'] != null)
                                  {
                                    return InkWell(
