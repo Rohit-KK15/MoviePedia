@@ -26,9 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
   String page="Home";
   final List<Text> widgetOptions = [
-    const Text('Home'),
-    const Text('Explore'),
-    const Text('Watch Later'),
+
   ];
   final String apiKey='398dd2815165a8a82bc1f26f61e23970';
   final String readaccesstoken='eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOThkZDI4MTUxNjVhOGE4MmJjMWYyNmY2MWUyMzk3MCIsInN1YiI6IjYzOWYxN2RiNjg4Y2QwMDBhOWVlODkxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VsIgSdG7Bc-F9iWjfYKNTUJKbVebSHqklJjdlcnNjjc';
@@ -92,62 +90,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        color: Colors.black,
-        child: const Padding(
-          padding: EdgeInsets.only(
-              top: 10,
-              left: 20,
-            right: 20
-          ),
-          child: GNav(
-            // duration: Duration(milliseconds: 1000),
-            activeColor: const Color(0xffD22B2B),
-            backgroundColor: Colors.black,
-            gap: 8,
-            // tabBackgroundColor: Color(0xffD22B2B),
-            // tabBackgroundColor: Colors.grey.shade900,
-            padding: EdgeInsets.all(16),
-            color: Colors.white,
-            iconSize: 30,
-            tabs: [
-              GButton(
-                  icon: Icons.home,
-                  text: 'Home',
-              ),
-              GButton(
-                  icon: Icons.search,
-                  text: 'Explore',
-              ),
-              GButton(
-                  icon: Icons.bookmark,
-                  text: 'WatchList'
-              ),
-            ],
-
-          ),
-        ),
-      ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   items: const <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.home),
-      //         label: "Home"
-      //     ),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.search),
-      //         label: "Search"
-      //     ),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.bookmark),
-      //         label: "Watch Later"
-      //     ),
-      //   ],
-      //   currentIndex: selectedIndex,
-      //   fixedColor: Colors.red,
-      //   onTap: onItemTapped,
-      //   backgroundColor: Colors.black,
-      // ),
     );
   }
 
