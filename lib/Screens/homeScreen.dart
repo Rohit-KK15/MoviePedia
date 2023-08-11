@@ -29,10 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
   String page="Home";
   late TMDB tmdb;
 
+
   @override
   void initState(){
-    super.initState();
     tmdb = widget.tmdb;
+    loadmovies();
+    super.initState();
   }
 
   Future<void> loadmovies()async{
