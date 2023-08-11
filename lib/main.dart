@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen()
+      home: StartUp()
     );
   }
 // void onItemTapped(int index) {
@@ -72,3 +72,70 @@ class _HomeState extends State<Home> {
 // }
 
 }
+
+class StartUp extends StatefulWidget {
+  const StartUp({Key? key}) : super(key: key);
+
+  @override
+  State<StartUp> createState() => _StartUpState();
+}
+
+class _StartUpState extends State<StartUp> {
+
+  int _currentIndex = 0;
+  final List<Widget> _pages = [
+    HomeScreen(),
+    SearchPage(),
+    WatchLater(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _pages[_currentIndex],
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        child:  Padding(
+          padding: const EdgeInsets.only(
+              top: 10,
+              left: 20,
+              right: 20
+          ),
+          child: GNav(
+            // duration: Duration(milliseconds: 1000),
+            activeColor: const Color(0xffD22B2B),
+            backgroundColor: Colors.black,
+            gap: 8,
+            // tabBackgroundColor: Color(0xffD22B2B),
+            // tabBackgroundColor: Colors.grey.shade900,
+            padding: const EdgeInsets.all(16),
+            color: Colors.white,
+            iconSize: 30,
+            tabs: const [
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
+              ),
+              GButton(
+                icon: Icons.search,
+                text: 'Explore',
+              ),
+              GButton(
+                  icon: Icons.bookmark,
+                  text: 'WatchList'
+              ),
+            ],
+            selectedIndex: _currentIndex,
+            onTabChange: (index){
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+          ),
+        ),
+      ),
+
+    );
+  }
+}
+
