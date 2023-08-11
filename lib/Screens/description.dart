@@ -236,12 +236,44 @@ class _DescriptionState extends State<Description> {
                                                width: 100,
                                                decoration: BoxDecoration(
                                                    borderRadius: BorderRadius.circular(100),
-                                                   image: DecorationImage(
+                                                   image:  DecorationImage(
                                                            image: NetworkImage(
-                                                           'https://image.tmdb.org/t/p/w500' +
-                                                                  cast[index]['profile_path']
+                                                           'https://image.tmdb.org/t/p/w500'+ cast[index]['profile_path']
                                                        ),fit: BoxFit.fill)
-                                               ),
+                                               )
+                                             ),
+                                             const SizedBox(height: 1,),
+                                             Text(
+                                                 cast[index]['name'] != null
+                                                     ? cast[index]['name'] + "\n(" +
+                                                     cast[index]['character'] + ")"
+                                                     : 'Loading..',
+                                                 style: GoogleFonts.breeSerif(
+                                                     color: Colors.white,
+                                                     fontSize: 15.0
+                                                 )
+                                             )
+                                           ],
+                                         ),
+                                       ) : Container()
+                                   );
+                                 }else{
+                                   return InkWell(
+                                       child: cast[index]['name'] != null ? Container(
+                                         padding: const EdgeInsets.all(5),
+                                         width: 130,
+                                         child: Column(
+                                           children: [
+                                             Container(
+                                                 height: 100,
+                                                 width: 100,
+                                                 decoration: BoxDecoration(
+                                                     borderRadius: BorderRadius.circular(100),
+                                                     image:  const DecorationImage(
+                                                         image: AssetImage(
+                                                             'assets/images/empty_profile.jpg'
+                                                         ),fit: BoxFit.fill)
+                                                 )
                                              ),
                                              const SizedBox(height: 1,),
                                              Text(
