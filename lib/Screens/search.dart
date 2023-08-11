@@ -16,26 +16,9 @@ class _SearchPageState extends State<SearchPage> {
   String page="Search";
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home"
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: "Search"
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.bookmark),
-              label: "Watch Later"
-          ),
-        ],
-        currentIndex: selectedIndex,
-        fixedColor: Colors.red,
-        onTap: onItemTapped,
-        backgroundColor: Colors.black,
+    return const Scaffold(
+      body: Text(
+        'Search'
       ),
     );
   }
@@ -58,7 +41,7 @@ class _SearchPageState extends State<SearchPage> {
     } else if(page!=lbl && index==1) {
       Navigator.push(context,MaterialPageRoute(builder: (context) =>const SearchPage()));
     } else if(page!=lbl && index==2) {
-      Navigator.push(context,MaterialPageRoute(builder: (context) =>const watchLater()));
+      Navigator.push(context,MaterialPageRoute(builder: (context) =>const WatchLater()));
     }
   }
 }
