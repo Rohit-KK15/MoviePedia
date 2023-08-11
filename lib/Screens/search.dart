@@ -127,17 +127,18 @@ class _SearchPageState extends State<SearchPage> {
                             width: 50,
                             height: 75,
                             fit: BoxFit.cover,
-                          ): Container(
-                            width: 50,
-                            height: 75,
-                            color: Colors.grey,
+                          ):
+                          // Container(
+                          //   width: 50,
+                          //   height: 75,
+                          //   color: Colors.grey,
+                          // ),
+                          Image.asset(
+                              'assets/images/moviepedia.jpg',
+                              width: 50,
+                              height: 75,
+                              fit: BoxFit.cover,
                           ),
-                          // Image.asset(
-                          //     '../assets/images/moviepedia.jpg',
-                          //     width: 50,
-                          //     height: 75,
-                          //     fit: BoxFit.cover,
-                          // )
                           trailing: Container(
                             width: 70,
                             height: 25,
