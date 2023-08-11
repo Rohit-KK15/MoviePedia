@@ -43,7 +43,7 @@ class TopratedTV extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                child: modified_text(text: topratedtv[index]['name']!=null?topratedtv[index]['name']:'Loading..', colour: Colors.white, size: 15.0),
+                                child: modified_text(text: topratedtv[index]['name'] ?? 'Loading..', colour: Colors.white, size: 15.0),
                               )
                             ],
                           ),
