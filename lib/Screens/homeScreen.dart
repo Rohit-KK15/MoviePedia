@@ -64,17 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          title: Text(
-              'MoviePedia 🎬',
-              style: GoogleFonts.bebasNeue(
-                color: Colors.red.withOpacity(0.5),
-                fontSize: 29.0,
-                fontWeight: FontWeight.bold,
-              )
-          )
-      ),
       body: RefreshIndicator(
         backgroundColor: Colors.black,
         color: Colors.red,
