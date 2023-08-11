@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
-class watchLater extends StatefulWidget {
-  const watchLater({Key? key}) : super(key: key);
+class WatchLater extends StatefulWidget {
+  const WatchLater({Key? key}) : super(key: key);
 
   @override
-  State<watchLater> createState() => _watchLaterState();
+  State<WatchLater> createState() => _WatchLaterState();
 }
 
-class _watchLaterState extends State<watchLater> {
+class _WatchLaterState extends State<WatchLater> {
   @override
   Widget build(BuildContext context) {
     return Container();
