@@ -84,14 +84,26 @@ class _StartUpState extends State<StartUp> {
 
   int _currentIndex = 0;
   final List<Widget> _pages = [
-    HomeScreen(),
-    SearchPage(),
-    WatchLater(),
+    const HomeScreen(),
+    const SearchPage(),
+    const WatchLater(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: Text(
+              'MoviePedia 🎬',
+              style: GoogleFonts.bebasNeue(
+                color: Colors.red.withOpacity(0.5),
+                fontSize: 29.0,
+                fontWeight: FontWeight.bold,
+              )
+          )
+      ),
       body: _pages[_currentIndex],
       bottomNavigationBar: Container(
         color: Colors.black,
