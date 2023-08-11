@@ -160,8 +160,8 @@ class _SearchPageState extends State<SearchPage> {
                               Navigator.push(context,MaterialPageRoute(builder: (context) =>Description(
                                 name: movie['release_date'] == null ? movie['name'] : movie['title'],
                                 desc: movie['overview'],
-                                bannerurl: 'https://image.tmdb.org/t/p/w500'+movie['backdrop_path'],
-                                posterurl: 'https://image.tmdb.org/t/p/w500'+movie['poster_path'],
+                                bannerurl: 'https://image.tmdb.org/t/p/w500 ${movie['backdrop_path']}',
+                                posterurl: 'https://image.tmdb.org/t/p/w500 ${movie['poster_path']}',
                                 vote: loadrating(movie['vote_average']),
                                 launch_on: movie['release_date'] ?? movie['first_air_date'],
                                 id: id,
