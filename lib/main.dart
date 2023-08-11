@@ -4,9 +4,6 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:project2/Screens/homeScreen.dart';
 import 'package:project2/Screens/search.dart';
 import 'package:project2/Screens/watchLater.dart';
-import 'package:project2/widgets/toprated.dart';
-import 'package:project2/widgets/trending.dart';
-import 'package:project2/widgets/tv.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 void main()=>runApp(MyApp());
@@ -40,7 +37,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  int selectedIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,28 +46,6 @@ class _HomeState extends State<Home> {
       home: StartUp()
     );
   }
-// void onItemTapped(int index) {
-//   setState(() {
-//     selectedIndex = index;
-//   });
-//   String lbl;
-//   if(selectedIndex==0) {
-//     lbl="Home";
-//   } else if(selectedIndex==1) {
-//     lbl="Search";
-//   } else {
-//     lbl="Watch Later";
-//   }
-//   print(index);
-//   if(page!=lbl && index==0) {
-//     Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) =>const MyApp()));
-//   } else if(page!=lbl && index==1) {
-//     Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) =>const SearchPage()));
-//   } else if(page!=lbl && index==2) {
-//     Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) =>const watchLater()));
-//   }
-// }
-
 }
 
 class StartUp extends StatefulWidget {
@@ -82,12 +57,33 @@ class StartUp extends StatefulWidget {
 
 class _StartUpState extends State<StartUp> {
 
+  final String apiKey='398dd2815165a8a82bc1f26f61e23970';
+  final String readaccesstoken='eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOThkZDI4MTUxNjVhOGE4MmJjMWYyNmY2MWUyMzk3MCIsInN1YiI6IjYzOWYxN2RiNjg4Y2QwMDBhOWVlODkxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VsIgSdG7Bc-F9iWjfYKNTUJKbVebSHqklJjdlcnNjjc';
+  late TMDB tmdb;
+  late List<Widget> _pages;
+
+  @override
+  void initState(){
+    initTMDB();
+    super.initState();
+  }
+
+  void initTMDB(){
+    tmdb = TMDB(ApiKeys(apiKey, readaccesstoken),
+        logConfig: const ConfigLogger(
+            showLogs: true,
+            showErrorLogs: true
+        ));
+      _pages = [
+      HomeScreen(tmdb: tmdb),
+      SearchPage(tmdb: tmdb,),
+      const WatchLater(),
+    ];
+  }
+
+
+
   int _currentIndex = 0;
-  final List<Widget> _pages = [
-    const HomeScreen(),
-    const SearchPage(),
-    const WatchLater(),
-  ];
 
   @override
   Widget build(BuildContext context) {
