@@ -12,7 +12,9 @@ import '../widgets/trending.dart';
 import '../widgets/tv.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final TMDB tmdb;
+
+  const HomeScreen({Key? key, required this.tmdb}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -25,25 +27,15 @@ class _HomeScreenState extends State<HomeScreen> {
   List topratedTv=[];
   int selectedIndex = 0;
   String page="Home";
-  final List<Text> widgetOptions = [
-
-  ];
-  final String apiKey='398dd2815165a8a82bc1f26f61e23970';
-  final String readaccesstoken='eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOThkZDI4MTUxNjVhOGE4MmJjMWYyNmY2MWUyMzk3MCIsInN1YiI6IjYzOWYxN2RiNjg4Y2QwMDBhOWVlODkxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VsIgSdG7Bc-F9iWjfYKNTUJKbVebSHqklJjdlcnNjjc';
-
+  late TMDB tmdb;
 
   @override
   void initState(){
-    loadmovies();
     super.initState();
+    tmdb = widget.tmdb;
   }
 
   Future<void> loadmovies()async{
-    TMDB tmdb=TMDB(ApiKeys(apiKey, readaccesstoken),
-        logConfig: const ConfigLogger(
-            showLogs: true,
-            showErrorLogs: true
-        ));
     Map trending=await tmdb.v3.trending.getTrending();
     Map topratedMovies=await tmdb.v3.movies.getTopRated();
     Map topratedtv=await tmdb.v3.tv.getTopRated();
@@ -81,27 +73,5 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  // void onItemTapped(int index) {
-  //   setState(() {
-  //     selectedIndex = index;
-  //   });
-  //   String lbl;
-  //   if(selectedIndex==0) {
-  //     lbl="Home";
-  //   } else if(selectedIndex==1) {
-  //     lbl="Search";
-  //   } else {
-  //     lbl="Watch Later";
-  //   }
-  //   print(index);
-  //   if(page!=lbl && index==0) {
-  //     Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) =>const MyApp()));
-  //   } else if(page!=lbl && index==1) {
-  //     Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) =>const SearchPage()));
-  //   } else if(page!=lbl && index==2) {
-  //     Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) =>const watchLater()));
-  //   }
-  // }
 
 }
