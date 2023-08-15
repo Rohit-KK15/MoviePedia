@@ -102,10 +102,11 @@ class _DescriptionState extends State<Description> {
                  Positioned(
                    top: 10,
                    child: IconButton(
+                     color: Colors.black,
                      icon: const Icon(
                          Ionicons.chevron_back_outline,
-                         size: 35,
-                       color: Colors.white,
+                         size: 40,
+                       // color: Colors.red,
                      ),
                      onPressed: (){
                      Navigator.pop(context);
@@ -147,17 +148,15 @@ class _DescriptionState extends State<Description> {
            Padding(
              padding: const EdgeInsets.symmetric(horizontal: 8.0),
              child: Row(
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                children: [
-                 Column(
-
-                   children: [
-                     Container(
-                       padding: const EdgeInsets.only(
-                         right:10,
-                         left:10,
-                         bottom:10,
-                       ),
-                       child: Text(
+                 Expanded(
+                   child: Column(
+                     mainAxisAlignment: MainAxisAlignment.start,
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: [
+                       Text(
+                         // textAlign: TextAlign.start,
                          name,
                          style: GoogleFonts.alumniSans(
                            color: const Color(0xffD22B2B),
@@ -165,10 +164,8 @@ class _DescriptionState extends State<Description> {
                            fontWeight: FontWeight.bold,
                          ),
                        ),
-                     ),
-                     Container(
-                       padding: const EdgeInsets.only(left:10),
-                       child: Text(
+                       const SizedBox(height: 10,),
+                       Text(
                          '(Release Date: $launch_on)',
                          style: const TextStyle(
                            color: Colors.yellow,
@@ -177,8 +174,8 @@ class _DescriptionState extends State<Description> {
                            fontWeight: FontWeight.bold,
                          ),
                        ),
-                     ),
-                   ],
+                     ],
+                   ),
                  ),
                  IconButton(
                    icon: Icon(
@@ -186,6 +183,8 @@ class _DescriptionState extends State<Description> {
                      size: 30,
                      color: Colors.red,
                    ),
+                   splashRadius: 20,
+                   // splashColor: Colors.transparent,
                    onPressed: toggleBookmark,
                  ),
                ],
