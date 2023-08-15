@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project2/Screens/description.dart';
-import 'package:project2/utils/text.dart';
 import 'package:tmdb_api/tmdb_api.dart';
-import 'package:project2/main.dart';
 class TrendingMovies extends StatelessWidget {
   final List trending;
   final String apiKey='398dd2815165a8a82bc1f26f61e23970';
@@ -17,20 +15,20 @@ class TrendingMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "TRENDING MOVIES",
             style: GoogleFonts.alumniSans(
-              color: Color(0xffD22B2B),
+              color: const Color(0xffD22B2B),
               fontSize: 35.0,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height:10),
-          Container(
+          const SizedBox(height:10),
+          SizedBox(
             height: 200,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -48,12 +46,13 @@ class TrendingMovies extends StatelessWidget {
                         launch_on: trending[index]['release_date'],
                         id: i,
                         ms: true,
+                        online: true,
                         // crew: loadCrew(i),
                     )));
                     print(trending[index]['credits']);
                   },
                   child:trending[index]['title']!=null? Container(
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     width: 240,
                     child: Column(
                       children: [
@@ -69,15 +68,13 @@ class TrendingMovies extends StatelessWidget {
                                 )
                             ),
                         ),
-                        SizedBox(height: 10,),
-                        Container(
-                          child: Text(
-                            trending[index]['title']!=null?trending[index]['title']:'Loading..',
-                            style: GoogleFonts.breeSerif(
-                                color: Colors.white,
-                                fontSize: 15.0
-                            )
-                          ),
+                        const SizedBox(height: 10,),
+                        Text(
+                          trending[index]['title']!=null?trending[index]['title']:'Loading..',
+                          style: GoogleFonts.breeSerif(
+                              color: Colors.white,
+                              fontSize: 15.0
+                          )
                         )
                       ],
                     ),
@@ -96,7 +93,7 @@ class TrendingMovies extends StatelessWidget {
   }
    Future<List> loadCast(int id) async {
      TMDB tmdb=TMDB(ApiKeys(apiKey, readaccesstoken),
-         logConfig: ConfigLogger(
+         logConfig: const ConfigLogger(
              showLogs: true,
              showErrorLogs: true
          ));
