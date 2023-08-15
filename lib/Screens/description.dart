@@ -3,6 +3,9 @@ import 'package:ionicons/ionicons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tmdb_api/tmdb_api.dart';
+
+import '../model/movie_model.dart';
+import '../utils/db_helper.dart';
  class Description extends StatefulWidget {
    String name, desc, bannerurl, posterurl, vote, launch_on;
    int id;
@@ -43,10 +46,52 @@ class _DescriptionState extends State<Description> {
   String readaccesstoken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOThkZDI4MTUxNjVhOGE4MmJjMWYyNmY2MWUyMzk3MCIsInN1YiI6IjYzOWYxN2RiNjg4Y2QwMDBhOWVlODkxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VsIgSdG7Bc-F9iWjfYKNTUJKbVebSHqklJjdlcnNjjc';
   bool isWatchListed = false;
 
-  void toggleBookmark() {
-    setState(() {
-      isWatchListed = !isWatchListed;
-    });
+  Future<void> toggleBookmark() async{
+    final dbHelper = DatabaseHelper();
+    await dbHelper.initDatabase();
+
+    // await dbHelper.getBookmarkedMovies();
+    //
+    // setState(() {
+    //   isWatchListed = !isWatchListed;
+    // });
+
+    if(isWatchListed){
+      try{
+        await dbHelper.deleteMovie(id);
+        await dbHelper.getBookmarkedMovies();
+        setState(() {
+          isWatchListed = !isWatchListed;
+        });
+      }catch(e){
+        print(e);
+    }
+    }
+    else {
+
+      final newMovie = Movie(
+        name: name,
+        desc: desc,
+        bannerUrl: bannerurl,
+        posterUrl: posterurl,
+        vote: vote,
+        launchOn: launch_on,
+        cast: cast,
+        crew: crew,
+        id: id,
+      );
+
+      try {
+        await dbHelper.insertMovie(newMovie);
+        await dbHelper.getBookmarkedMovies();
+        setState(() {
+          isWatchListed = !isWatchListed;
+        });
+      } catch (e) {
+        print(e);
+      }
+    }
+
   }
 
 
@@ -77,11 +122,23 @@ class _DescriptionState extends State<Description> {
       }
     }
 
+    void checkIfWatchListed() async{
+      final dbHelper = DatabaseHelper();
+      await dbHelper.initDatabase();
+      if( await dbHelper.isMovieExists(id)){
+        setState(() {
+          isWatchListed = true;
+        });
+      }
+    }
+
+
+
   @override
-  void initState(){
+  void initState() {
+      checkIfWatchListed();
       if(online){
         loadCredits();
-
       }
     super.initState();
   }
