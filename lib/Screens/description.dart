@@ -40,6 +40,14 @@ class _DescriptionState extends State<Description> {
   bool _isLoading = true;
   String apiKey = '398dd2815165a8a82bc1f26f61e23970';
   String readaccesstoken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOThkZDI4MTUxNjVhOGE4MmJjMWYyNmY2MWUyMzk3MCIsInN1YiI6IjYzOWYxN2RiNjg4Y2QwMDBhOWVlODkxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VsIgSdG7Bc-F9iWjfYKNTUJKbVebSHqklJjdlcnNjjc';
+  bool isWatchListed = false;
+
+  void toggleBookmark() {
+    setState(() {
+      isWatchListed = !isWatchListed;
+    });
+  }
+
 
   _DescriptionState(
       {Key? key, required this.name, required this.desc, required this.bannerurl, required this.posterurl, required this.vote, required this.launch_on, required this.id, required this.ms});
@@ -136,33 +144,54 @@ class _DescriptionState extends State<Description> {
              )
            ),
            const SizedBox(height: 15),
-           Container(
-             padding: const EdgeInsets.only(
-                 right:10,
-               left:10,
-               bottom:10,
-             ),
-             child: Text(
-               name,
-               style: GoogleFonts.alumniSans(
-                 color: const Color(0xffD22B2B),
-                 fontSize: 40.0,
-                 fontWeight: FontWeight.bold,
-               ),
+           Padding(
+             padding: const EdgeInsets.symmetric(horizontal: 8.0),
+             child: Row(
+               children: [
+                 Column(
+
+                   children: [
+                     Container(
+                       padding: const EdgeInsets.only(
+                         right:10,
+                         left:10,
+                         bottom:10,
+                       ),
+                       child: Text(
+                         name,
+                         style: GoogleFonts.alumniSans(
+                           color: const Color(0xffD22B2B),
+                           fontSize: 40.0,
+                           fontWeight: FontWeight.bold,
+                         ),
+                       ),
+                     ),
+                     Container(
+                       padding: const EdgeInsets.only(left:10),
+                       child: Text(
+                         '(Release Date: $launch_on)',
+                         style: const TextStyle(
+                           color: Colors.yellow,
+                           fontFamily: 'Bebas Neue',
+                           fontSize: 15.0,
+                           fontWeight: FontWeight.bold,
+                         ),
+                       ),
+                     ),
+                   ],
+                 ),
+                 IconButton(
+                   icon: Icon(
+                     !isWatchListed ? Ionicons.bookmark_outline : Ionicons.bookmark_sharp,
+                     size: 30,
+                     color: Colors.red,
+                   ),
+                   onPressed: toggleBookmark,
+                 ),
+               ],
              ),
            ),
-           Container(
-             padding: const EdgeInsets.only(left:10),
-             child: Text(
-               '(Release Date: $launch_on)',
-               style: const TextStyle(
-                 color: Colors.yellow,
-                 fontFamily: 'Bebas Neue',
-                 fontSize: 15.0,
-                 fontWeight: FontWeight.bold,
-               ),
-             ),
-           ),
+
            Padding(
              padding: const EdgeInsets.only(
                  top:50.0,
@@ -357,9 +386,11 @@ class _DescriptionState extends State<Description> {
 
                )
              ),
-           )
+           ),
          ],
+
        ),
+
      );
    }
  }
