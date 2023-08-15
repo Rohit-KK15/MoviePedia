@@ -6,7 +6,7 @@ import 'package:tmdb_api/tmdb_api.dart';
  class Description extends StatefulWidget {
    String name, desc, bannerurl, posterurl, vote, launch_on;
    int id;
-   bool ms;
+   bool ms, online;
    List cast = [0];
    List crew = [0];
    int indx = 0;
@@ -14,7 +14,7 @@ import 'package:tmdb_api/tmdb_api.dart';
    String readaccesstoken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOThkZDI4MTUxNjVhOGE4MmJjMWYyNmY2MWUyMzk3MCIsInN1YiI6IjYzOWYxN2RiNjg4Y2QwMDBhOWVlODkxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VsIgSdG7Bc-F9iWjfYKNTUJKbVebSHqklJjdlcnNjjc';
 
    Description(
-       {Key? key, required this.name, required this.desc, required this.bannerurl, required this.posterurl, required this.vote, required this.launch_on, required this.id, required this.ms})
+       {Key? key,required this.online, required this.name, required this.desc, required this.bannerurl, required this.posterurl, required this.vote, required this.launch_on, required this.id, required this.ms})
        : super(key: key);
 
    @override
@@ -27,13 +27,14 @@ import 'package:tmdb_api/tmdb_api.dart';
          bannerurl: bannerurl,
          posterurl: posterurl,
          vote: vote,
-         launch_on: launch_on
+         launch_on: launch_on,
+         online: online
        );
  }
 class _DescriptionState extends State<Description> {
   String name, desc, bannerurl, posterurl, vote, launch_on;
   int id;
-  bool ms;
+  bool ms, online;
   List cast = [0];
   List crew = [0];
   int indx = 0;
@@ -50,7 +51,7 @@ class _DescriptionState extends State<Description> {
 
 
   _DescriptionState(
-      {Key? key, required this.name, required this.desc, required this.bannerurl, required this.posterurl, required this.vote, required this.launch_on, required this.id, required this.ms});
+      {Key? key,required this.online, required this.name, required this.desc, required this.bannerurl, required this.posterurl, required this.vote, required this.launch_on, required this.id, required this.ms});
 
     void loadCredits() async{
       TMDB tmdb=TMDB(ApiKeys(apiKey, readaccesstoken),
@@ -78,7 +79,10 @@ class _DescriptionState extends State<Description> {
 
   @override
   void initState(){
-    loadCredits();
+      if(online){
+        loadCredits();
+
+      }
     super.initState();
   }
 
@@ -102,11 +106,10 @@ class _DescriptionState extends State<Description> {
                  Positioned(
                    top: 10,
                    child: IconButton(
-                     color: Colors.black,
                      icon: const Icon(
                          Ionicons.chevron_back_outline,
                          size: 40,
-                       // color: Colors.red,
+                       color: Colors.white,
                      ),
                      onPressed: (){
                      Navigator.pop(context);
