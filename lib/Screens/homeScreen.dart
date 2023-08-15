@@ -43,12 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
     Map topratedtv=await tmdb.v3.tv.getTopRated();
     Map tvshows=await tmdb.v3.tv.getTopRated();
     Map details=await tmdb.v3.movies.getCredits(564);
-    setState(() {
       trendingmovies=trending['results'];
       topratedmovies=topratedMovies['results'];
       tv=tvshows['results'];
       topratedTv=topratedtv['results'];
-    });
     print(details);
     print(topratedmovies);
     print(tv);
