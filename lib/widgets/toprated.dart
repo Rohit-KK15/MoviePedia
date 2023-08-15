@@ -16,13 +16,13 @@ class Toprated extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            modified_text(text: "TOPRATED MOVIES", colour: Color(0xffD22B2B), size: 35.0),
-            SizedBox(height:10),
-            Container(
+            const modified_text(text: "TOPRATED MOVIES", colour: Color(0xffD22B2B), size: 35.0),
+            const SizedBox(height:10),
+            SizedBox(
               height: 270,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -40,11 +40,12 @@ class Toprated extends StatelessWidget {
                               launch_on: toprated[index]['release_date'],
                               id: i,
                               ms: true,
+                              online: true,
                               // crew: loadCrew(i),
                           )));
                         },
                         child: Container(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                             right: 10,
                           ),
                           width: 140,
@@ -61,14 +62,12 @@ class Toprated extends StatelessWidget {
                                     )
                                 ),
                               ),
-                              Container(
-                                child: Text(
-                                    toprated[index]['title']!=null?toprated[index]['title']:'Loading..',
-                                    style: GoogleFonts.breeSerif(
-                                        color: Colors.white,
-                                        fontSize: 15.0
-                                    )
-                                ),
+                              Text(
+                                  toprated[index]['title']!=null?toprated[index]['title']:'Loading..',
+                                  style: GoogleFonts.breeSerif(
+                                      color: Colors.white,
+                                      fontSize: 15.0
+                                  )
                               )
                             ],
                           ),
@@ -83,7 +82,7 @@ class Toprated extends StatelessWidget {
   }
   Future<List> loadCast(int id) async{
     TMDB tmdb=TMDB(ApiKeys(apiKey, readaccesstoken),
-        logConfig: ConfigLogger(
+        logConfig: const ConfigLogger(
             showLogs: true,
             showErrorLogs: true
         ));
