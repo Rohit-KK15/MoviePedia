@@ -167,6 +167,7 @@ class _SearchPageState extends State<SearchPage> {
                                 launch_on: movie['release_date'] ?? movie['first_air_date'],
                                 id: id,
                                 ms: movie['release_date'] != null ? true : false,
+                                online: true,
                               )));
                           },
                         ),
