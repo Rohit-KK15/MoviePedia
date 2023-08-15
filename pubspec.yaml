@@ -31,6 +31,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  sqflite:
+  path:
   tmdb_api:
   google_fonts:
   bordered_text: ^2.0.0
