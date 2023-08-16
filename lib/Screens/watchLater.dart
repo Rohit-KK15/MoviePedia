@@ -21,6 +21,7 @@ class _WatchLaterState extends State<WatchLater> {
   String _selectedOption = 'ALL';
   List<Map<String, dynamic>> _displayData = [];
 
+
   @override
   void initState() {
     super.initState();
@@ -29,6 +30,7 @@ class _WatchLaterState extends State<WatchLater> {
 
 
   Future<void> _fetchData() async {
+    print("heyoooo");
     final dbHelper = DatabaseHelper();
     await dbHelper.initDatabase();
     List<Map<String, dynamic>> data = [];
@@ -123,7 +125,7 @@ class _WatchLaterState extends State<WatchLater> {
                 print(111111);
                 print(jsonDecode(_displayData[j]['cast']));
                 int id=_displayData[j]['id'];
-                Navigator.push(context,MaterialPageRoute(builder: (context)=>Description(
+                Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>Description(
                   name: _displayData[j]['name'],
                   desc: _displayData[j]['desc'],
                   bannerurl: 'https://image.tmdb.org/t/p/w500'+_displayData[j]['bannerUrl'],
