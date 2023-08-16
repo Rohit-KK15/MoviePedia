@@ -40,6 +40,8 @@ class TV extends StatelessWidget {
                               id: i,
                               ms: false,
                               online: true,
+                              cast: const [],
+                              crew: const [],
                               // crew: loadCrew(i),
                           )));
                         },
