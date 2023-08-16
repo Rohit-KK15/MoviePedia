@@ -41,8 +41,8 @@ class _DescriptionState extends State<Description> {
   String name, desc, bannerurl, posterurl, vote, launch_on;
   int id;
   bool ms, online;
-  List cast = [0];
-  List crew = [0];
+  List cast;
+  List crew;
   int indx = 0;
   bool _isLoading = true;
   String apiKey = '398dd2815165a8a82bc1f26f61e23970';
@@ -164,7 +164,14 @@ class _DescriptionState extends State<Description> {
   @override
   void initState() {
       checkIfWatchListed();
-      loadCredits();
+      if(online){
+        loadCredits();
+      }
+      else{
+        setState(() {
+          _isLoading = false;
+        });
+      }
       super.initState();
   }
 
