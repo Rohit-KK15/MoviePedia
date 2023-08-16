@@ -28,16 +28,17 @@ class _WatchLaterState extends State<WatchLater> {
     final dbHelper = DatabaseHelper();
     await dbHelper.initDatabase();
     List<Map<String, dynamic>> data = [];
-    if (_selectedOption == 'All') {
+    if (_selectedOption == 'ALL') {
       data = (await dbHelper.getAll()).cast<Map<String, dynamic>>();
     } else if (_selectedOption == 'Movies') {
       data = (await dbHelper.getMovies()).cast<Map<String, dynamic>>();
-    } else if (_selectedOption == 'TV Shows') {
+    } else if (_selectedOption == 'TVShows') {
       data = (await dbHelper.getTVShows()).cast<Map<String, dynamic>>();
     }
 
     setState(() {
       _displayData = data;
+      print(_displayData);
     });
   }
 
@@ -72,6 +73,7 @@ class _WatchLaterState extends State<WatchLater> {
                           onChanged: (String? newValue){
                             setState(() {
                               _selectedOption = newValue!;
+                              _fetchData();
                             });
                           },
                         items: <String>['ALL','Movies','TVShows'].map((String value){
