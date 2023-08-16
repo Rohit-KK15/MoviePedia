@@ -77,4 +77,16 @@ class DatabaseHelper {
     print(maps);
     return maps;
   }
+
+  Future<Map<String, dynamic>> getCast(int id) async {
+    final List<Map<String, dynamic>> cast = await _database.rawQuery('SELECT * FROM movies WHERE id = $id');
+    print(cast);
+    return cast[1]['cast'];
+  }
+
+  Future<List> getCrew(int id) async {
+    final List crew = await _database.rawQuery('SELECT * FROM movies WHERE id = $id');
+    print(crew);
+    return crew;
+  }
 }
