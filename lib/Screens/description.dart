@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project2/Screens/watchLater.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 import '../model/movie_model.dart';
@@ -163,6 +164,9 @@ class _DescriptionState extends State<Description> {
 
   @override
   void initState() {
+    MaterialApp(initialRoute: '/first', routes: {
+      '/watchlater': (context) => const WatchLater(),
+    });
       checkIfWatchListed();
       if(online){
         loadCredits();
@@ -201,7 +205,13 @@ class _DescriptionState extends State<Description> {
                        color: Colors.white,
                      ),
                      onPressed: (){
-                     Navigator.pop(context);
+                     // Navigator.pop(context);
+                       if(!online){
+                         Navigator.pop(context);
+                       }
+                       else{
+                         Navigator.pop(context);
+                       }
                      },
                    ),
                  ),
