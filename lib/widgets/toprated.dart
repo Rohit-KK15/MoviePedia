@@ -41,6 +41,8 @@ class Toprated extends StatelessWidget {
                               id: i,
                               ms: true,
                               online: true,
+                              cast: const [],
+                              crew: const [],
                               // crew: loadCrew(i),
                           )));
                         },
