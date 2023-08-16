@@ -18,7 +18,7 @@ import '../utils/db_helper.dart';
    String readaccesstoken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOThkZDI4MTUxNjVhOGE4MmJjMWYyNmY2MWUyMzk3MCIsInN1YiI6IjYzOWYxN2RiNjg4Y2QwMDBhOWVlODkxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VsIgSdG7Bc-F9iWjfYKNTUJKbVebSHqklJjdlcnNjjc';
 
    Description(
-       {Key? key,required this.online, required this.name, required this.desc, required this.bannerurl, required this.posterurl, required this.vote, required this.launch_on, required this.id, required this.ms})
+       {Key? key,required this.cast, required this.crew, required this.online, required this.name, required this.desc, required this.bannerurl, required this.posterurl, required this.vote, required this.launch_on, required this.id, required this.ms})
        : super(key: key);
 
    @override
@@ -32,7 +32,9 @@ import '../utils/db_helper.dart';
          posterurl: posterurl,
          vote: vote,
          launch_on: launch_on,
-         online: online
+         online: online,
+         cast: cast,
+         crew: crew
        );
  }
 class _DescriptionState extends State<Description> {
@@ -46,6 +48,7 @@ class _DescriptionState extends State<Description> {
   String apiKey = '398dd2815165a8a82bc1f26f61e23970';
   String readaccesstoken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOThkZDI4MTUxNjVhOGE4MmJjMWYyNmY2MWUyMzk3MCIsInN1YiI6IjYzOWYxN2RiNjg4Y2QwMDBhOWVlODkxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VsIgSdG7Bc-F9iWjfYKNTUJKbVebSHqklJjdlcnNjjc';
   bool isWatchListed = false;
+
 
   Future<void> toggleBookmark() async{
     final dbHelper = DatabaseHelper();
@@ -109,21 +112,32 @@ class _DescriptionState extends State<Description> {
 
 
   _DescriptionState(
-      {Key? key,required this.online, required this.name, required this.desc, required this.bannerurl, required this.posterurl, required this.vote, required this.launch_on, required this.id, required this.ms});
+      {Key? key,required this.cast, required this.crew, required this.online, required this.name, required this.desc, required this.bannerurl, required this.posterurl, required this.vote, required this.launch_on, required this.id, required this.ms});
 
     void loadCredits() async{
-      TMDB tmdb=TMDB(ApiKeys(apiKey, readaccesstoken),
-          logConfig: const ConfigLogger(
-              showLogs: true,
-              showErrorLogs: true
-          ));
+      if(online){
+      TMDB tmdb = TMDB(ApiKeys(apiKey, readaccesstoken),
+          logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
 
-      Map credits = ms?await tmdb.v3.movies.getCredits(id):await tmdb.v3.tv.getCredits(id);
+      Map credits = ms
+          ? await tmdb.v3.movies.getCredits(id)
+          : await tmdb.v3.tv.getCredits(id);
       setState((){
         cast=credits['cast'];
         crew=credits['crew'];
         _isLoading = false;
       });
+    }
+      // else{
+      //   final dbHelper = DatabaseHelper();
+      //   await dbHelper.initDatabase();
+      //   cast = await dbHelper.getCast(id);
+      //   crew = await dbHelper.getCrew(id);
+      //   setState((){
+      //     _isLoading = false;
+      //   });
+      // }
+
       print(cast);
       print(crew);
       for(int i=0;i<crew.length;i++){
@@ -150,10 +164,8 @@ class _DescriptionState extends State<Description> {
   @override
   void initState() {
       checkIfWatchListed();
-      if(online){
-        loadCredits();
-      }
-    super.initState();
+      loadCredits();
+      super.initState();
   }
 
    @override
