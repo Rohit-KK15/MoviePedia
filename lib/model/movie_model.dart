@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Movie {
   int id;
   String name;
@@ -32,8 +34,8 @@ class Movie {
       'posterUrl': posterUrl,
       'vote': vote,
       'launchOn': launchOn,
-      'cast': cast != null ? cast.join(',') : null,
-      'crew': crew != null ? crew.join(',') : null,
+      'cast': jsonEncode(cast),
+      'crew': jsonEncode(crew),
       'ms': ms,
     };
   }
