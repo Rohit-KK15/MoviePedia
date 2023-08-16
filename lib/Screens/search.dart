@@ -168,6 +168,8 @@ class _SearchPageState extends State<SearchPage> {
                                 id: id,
                                 ms: movie['release_date'] != null ? true : false,
                                 online: true,
+                                cast: const [],
+                                crew: const [],
                               )));
                           },
                         ),
