@@ -60,7 +60,7 @@ class _DescriptionState extends State<Description> {
     if(isWatchListed){
       try{
         await dbHelper.deleteMovie(id);
-        await dbHelper.getBookmarkedMovies();
+        await dbHelper.getAll();
         setState(() {
           isWatchListed = !isWatchListed;
         });
@@ -89,7 +89,7 @@ class _DescriptionState extends State<Description> {
 
       try {
         await dbHelper.insertMovie(newMovie);
-        await dbHelper.getBookmarkedMovies();
+        await dbHelper.getAll();
 
         setState(() {
           isWatchListed = !isWatchListed;
