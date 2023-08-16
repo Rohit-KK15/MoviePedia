@@ -124,6 +124,7 @@ class _WatchLaterState extends State<WatchLater> {
               onTap: (){
                 print(111111);
                 print(jsonDecode(_displayData[j]['cast']));
+                int current = j;
                 int id=_displayData[j]['id'];
                 Navigator.push(context,MaterialPageRoute(builder: (context)=>Description(
                   name: _displayData[j]['name'],
@@ -138,7 +139,13 @@ class _WatchLaterState extends State<WatchLater> {
                   cast: jsonDecode(_displayData[j]['cast']) as List<dynamic>,
                   crew: jsonDecode(_displayData[j]['crew']) as List<dynamic>,
                   // crew: loadCrew(i),
-                )));
+                ))).then((result) {
+                  if (result != null && result is bool && result){
+                    setState(() {
+                      _fetchData();
+                    });
+                  }
+                });
               },
             child: Container(
               padding: const EdgeInsets.all(8),
