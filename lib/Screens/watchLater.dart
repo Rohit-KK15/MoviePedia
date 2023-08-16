@@ -125,7 +125,7 @@ class _WatchLaterState extends State<WatchLater> {
                 print(111111);
                 print(jsonDecode(_displayData[j]['cast']));
                 int id=_displayData[j]['id'];
-                Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>Description(
+                Navigator.push(context,MaterialPageRoute(builder: (context)=>Description(
                   name: _displayData[j]['name'],
                   desc: _displayData[j]['desc'],
                   bannerurl: 'https://image.tmdb.org/t/p/w500'+_displayData[j]['bannerUrl'],
