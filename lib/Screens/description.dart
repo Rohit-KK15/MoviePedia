@@ -207,7 +207,12 @@ class _DescriptionState extends State<Description> {
                      onPressed: (){
                      // Navigator.pop(context);
                        if(!online){
-                         Navigator.pop(context);
+                         print(isWatchListed);
+                         if(!isWatchListed){
+                           Navigator.pop(context, true);
+                         }else{
+                           Navigator.pop(context);
+                         }
                        }
                        else{
                          Navigator.pop(context);
