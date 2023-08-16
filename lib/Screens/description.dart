@@ -85,6 +85,7 @@ class _DescriptionState extends State<Description> {
         cast: cast,
         crew: crew,
         id: id,
+        ms: ms ? 1 : 0,
       );
 
       try {
