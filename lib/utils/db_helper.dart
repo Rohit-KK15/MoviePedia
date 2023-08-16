@@ -59,8 +59,24 @@ class DatabaseHelper {
     return maps.isNotEmpty;
   }
 
-  Future<List<Movie>> getBookmarkedMovies() async {
+  Future<List<Movie>> getAll() async {
     final List<Map<String, dynamic>> maps = await _database.query('movies');
+    print(maps);
+    return List.generate(maps.length, (index) {
+      return Movie.fromMap(maps[index]);
+    });
+  }
+
+  Future<List<Movie>> getMovies() async {
+    final List<Map<String, dynamic>> maps = await _database.query('movies', where: 'ms = ?', whereArgs: [true]);
+    print(maps);
+    return List.generate(maps.length, (index) {
+      return Movie.fromMap(maps[index]);
+    });
+  }
+
+  Future<List<Movie>> getTVShows() async {
+    final List<Map<String, dynamic>> maps = await _database.query('movies', where: 'ms = ?', whereArgs: [false]);
     print(maps);
     return List.generate(maps.length, (index) {
       return Movie.fromMap(maps[index]);
