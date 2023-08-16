@@ -100,6 +100,7 @@ class _StartUpState extends State<StartUp> {
               )
           )
       ),
+      // body: Navigator.push(context, MaterialPageRoute(builder: (context) => _pages[_currentIndex])),
       body: _pages[_currentIndex],
       bottomNavigationBar: Container(
         color: Colors.black,
