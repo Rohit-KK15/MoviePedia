@@ -16,6 +16,7 @@ class DatabaseHelper {
             id INTEGER PRIMARY KEY,
             name TEXT,
             desc TEXT,
+            ms INTEGER,
             bannerUrl TEXT,
             posterUrl TEXT,
             vote TEXT,
@@ -59,27 +60,21 @@ class DatabaseHelper {
     return maps.isNotEmpty;
   }
 
-  Future<List<Movie>> getAll() async {
-    final List<Map<String, dynamic>> maps = await _database.query('movies');
+  Future<List<Map<String, dynamic>>> getAll() async {
+    final List<Map<String, dynamic>> maps = await _database.rawQuery('SELECT * FROM movies');
     print(maps);
-    return List.generate(maps.length, (index) {
-      return Movie.fromMap(maps[index]);
-    });
+    return maps;
   }
 
-  Future<List<Movie>> getMovies() async {
-    final List<Map<String, dynamic>> maps = await _database.query('movies', where: 'ms = ?', whereArgs: [true]);
+  Future<List<Map<String, dynamic>>> getMovies() async {
+    final List<Map<String, dynamic>> maps = await _database.rawQuery('SELECT * FROM movies WHERE ms = 1');
     print(maps);
-    return List.generate(maps.length, (index) {
-      return Movie.fromMap(maps[index]);
-    });
+    return maps;
   }
 
-  Future<List<Movie>> getTVShows() async {
-    final List<Map<String, dynamic>> maps = await _database.query('movies', where: 'ms = ?', whereArgs: [false]);
+  Future<List<Map<String, dynamic>>> getTVShows() async {
+    final List<Map<String, dynamic>> maps = await _database.rawQuery('SELECT * FROM movies WHERE ms = 0');
     print(maps);
-    return List.generate(maps.length, (index) {
-      return Movie.fromMap(maps[index]);
-    });
+    return maps;
   }
 }
