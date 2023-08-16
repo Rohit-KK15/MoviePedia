@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:project2/utils/text.dart';
 
 import '../utils/db_helper.dart';
+import 'description.dart';
 
 class WatchLater extends StatefulWidget {
   const WatchLater({Key? key}) : super(key: key);
@@ -38,7 +40,6 @@ class _WatchLaterState extends State<WatchLater> {
 
     setState(() {
       _displayData = data;
-      print(_displayData);
     });
   }
 
@@ -98,10 +99,72 @@ class _WatchLaterState extends State<WatchLater> {
                   ),
                 )
               ],
-            )
+            ),
+            const SizedBox(height: 50,),
+            _buildDisplayRows()
           ],
         ),
       )
     );
   }
+
+  Widget _buildDisplayRows() {
+    List<Widget> rows = [];
+
+    for (int i = 0; i < _displayData.length; i += 3) {
+      List<Widget> rowChildren = [];
+
+      for (int j = i; j < i + 3 && j < _displayData.length; j++) {
+        rowChildren.add(
+          InkWell(
+              onTap: (){
+                int id=_displayData[i]['id'];
+                Navigator.push(context,MaterialPageRoute(builder: (context)=>Description(
+                  name: _displayData[i]['name'],
+                  desc: _displayData[i]['desc'],
+                  bannerurl: 'https://image.tmdb.org/t/p/w500'+_displayData[i]['bannerUrl'],
+                  posterurl: 'https://image.tmdb.org/t/p/w500'+_displayData[i]['posterUrl'],
+                  vote: _displayData[i]['vote'],
+                  launch_on: _displayData[i]['launchOn'],
+                  id: id,
+                  ms: _displayData[i]['ms'] == 1 ? true  : false,
+                  online: false,
+                  // crew: loadCrew(i),
+                )));
+              },
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              height: 200,
+              child: Column(
+                children: [
+                  Container(
+                    height: 150,
+                    width: 100,
+                      child: Image.network(_displayData[j]['posterUrl'])
+                  ),
+                  Text(
+                    _displayData[j]['name'],
+                    style: GoogleFonts.breeSerif(
+                       color: Colors.white,
+                       fontSize: 15.0
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      }
+
+      rows.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: rowChildren,
+        ),
+      );
+    }
+
+    return Column(children: rows);
+  }
+
 }
