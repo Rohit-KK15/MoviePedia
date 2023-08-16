@@ -121,20 +121,20 @@ class _WatchLaterState extends State<WatchLater> {
           InkWell(
               onTap: (){
                 print(111111);
-                print(jsonDecode(_displayData[i]['cast']));
-                int id=_displayData[i]['id'];
+                print(jsonDecode(_displayData[j]['cast']));
+                int id=_displayData[j]['id'];
                 Navigator.push(context,MaterialPageRoute(builder: (context)=>Description(
-                  name: _displayData[i]['name'],
-                  desc: _displayData[i]['desc'],
-                  bannerurl: 'https://image.tmdb.org/t/p/w500'+_displayData[i]['bannerUrl'],
-                  posterurl: 'https://image.tmdb.org/t/p/w500'+_displayData[i]['posterUrl'],
-                  vote: _displayData[i]['vote'],
-                  launch_on: _displayData[i]['launchOn'],
+                  name: _displayData[j]['name'],
+                  desc: _displayData[j]['desc'],
+                  bannerurl: 'https://image.tmdb.org/t/p/w500'+_displayData[j]['bannerUrl'],
+                  posterurl: 'https://image.tmdb.org/t/p/w500'+_displayData[j]['posterUrl'],
+                  vote: _displayData[j]['vote'],
+                  launch_on: _displayData[j]['launchOn'],
                   id: id,
-                  ms: _displayData[i]['ms'] == 1 ? true  : false,
+                  ms: _displayData[j]['ms'] == 1 ? true  : false,
                   online: false,
-                  cast: jsonDecode(_displayData[i]['cast']),
-                  crew: jsonDecode(_displayData[i]['crew']),
+                  cast: jsonDecode(_displayData[j]['cast']) as List<dynamic>,
+                  crew: jsonDecode(_displayData[j]['crew']) as List<dynamic>,
                   // crew: loadCrew(i),
                 )));
               },
