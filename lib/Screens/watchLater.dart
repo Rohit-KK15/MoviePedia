@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -118,6 +120,8 @@ class _WatchLaterState extends State<WatchLater> {
         rowChildren.add(
           InkWell(
               onTap: (){
+                print(111111);
+                print(jsonDecode(_displayData[i]['cast']));
                 int id=_displayData[i]['id'];
                 Navigator.push(context,MaterialPageRoute(builder: (context)=>Description(
                   name: _displayData[i]['name'],
@@ -129,19 +133,22 @@ class _WatchLaterState extends State<WatchLater> {
                   id: id,
                   ms: _displayData[i]['ms'] == 1 ? true  : false,
                   online: false,
+                  cast: jsonDecode(_displayData[i]['cast']),
+                  crew: jsonDecode(_displayData[i]['crew']),
                   // crew: loadCrew(i),
                 )));
               },
             child: Container(
               padding: const EdgeInsets.all(8),
-              height: 200,
+              height: 250,
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 150,
                     width: 100,
                       child: Image.network(_displayData[j]['posterUrl'])
                   ),
+                  const SizedBox(height: 10,),
                   Text(
                     _displayData[j]['name'],
                     style: GoogleFonts.breeSerif(
@@ -158,7 +165,6 @@ class _WatchLaterState extends State<WatchLater> {
 
       rows.add(
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: rowChildren,
         ),
       );
