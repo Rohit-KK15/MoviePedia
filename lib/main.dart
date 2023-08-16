@@ -61,6 +61,7 @@ class _StartUpState extends State<StartUp> {
   final String readaccesstoken='eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOThkZDI4MTUxNjVhOGE4MmJjMWYyNmY2MWUyMzk3MCIsInN1YiI6IjYzOWYxN2RiNjg4Y2QwMDBhOWVlODkxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VsIgSdG7Bc-F9iWjfYKNTUJKbVebSHqklJjdlcnNjjc';
   late TMDB tmdb;
   late List<Widget> _pages;
+  late List<String> pages;
 
   @override
   void initState(){
@@ -74,6 +75,12 @@ class _StartUpState extends State<StartUp> {
             showLogs: true,
             showErrorLogs: true
         ));
+    MaterialApp(initialRoute: '/first', routes: {
+      '/watchlater': (context) => const WatchLater(),
+      '/homescreen': (context) =>  HomeScreen(tmdb: tmdb),
+      '/search': (context) =>  SearchPage(tmdb: tmdb),
+    });
+    pages = ['/homescreen','/search','/watchlater'];
       _pages = [
       HomeScreen(tmdb: tmdb),
       SearchPage(tmdb: tmdb,),
@@ -100,7 +107,7 @@ class _StartUpState extends State<StartUp> {
               )
           )
       ),
-      // body: Navigator.push(context, MaterialPageRoute(builder: (context) => _pages[_currentIndex])),
+      // body: Navigator.push(context, pages[_currentIndex]),
       body: _pages[_currentIndex],
       bottomNavigationBar: Container(
         color: Colors.black,
