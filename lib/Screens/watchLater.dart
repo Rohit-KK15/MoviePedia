@@ -142,13 +142,16 @@ class _WatchLaterState extends State<WatchLater> {
               },
             child: Container(
               padding: const EdgeInsets.all(8),
-              height: 250,
+              height: 230,
               child: Column(
                 children: [
-                  SizedBox(
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100)
+                    ),
                     height: 150,
                     width: 100,
-                      child: Image.network(_displayData[j]['posterUrl'])
+                      child: Image.network(_displayData[j]['posterUrl'],fit: BoxFit.contain,)
                   ),
                   const SizedBox(height: 10,),
                   Text(
