@@ -115,10 +115,10 @@ class _WatchLaterState extends State<WatchLater> {
   Widget _buildDisplayRows() {
     List<Widget> rows = [];
 
-    for (int i = 0; i < _displayData.length; i += 3) {
+    for (int i = 0; i < _displayData.length; i += 2) {
       List<Widget> rowChildren = [];
 
-      for (int j = i; j < i + 3 && j < _displayData.length; j++) {
+      for (int j = i; j < i + 2 && j < _displayData.length; j++) {
         rowChildren.add(
           InkWell(
               onTap: (){
@@ -149,16 +149,21 @@ class _WatchLaterState extends State<WatchLater> {
               },
             child: Container(
               padding: const EdgeInsets.all(8),
-              height: 230,
+              height: 270,
               child: Column(
                 children: [
                   Container(
+                    height: 200,
+                    width: 150,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100)
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              'https://image.tmdb.org/t/p/w500'+_displayData[j]['posterUrl']
+                          )
+                      )
                     ),
-                    height: 150,
-                    width: 100,
-                      child: Image.network(_displayData[j]['posterUrl'],fit: BoxFit.contain,)
+
                   ),
                   const SizedBox(height: 10,),
                   Text(
@@ -182,7 +187,9 @@ class _WatchLaterState extends State<WatchLater> {
       );
     }
 
-    return Column(children: rows);
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+        child: Column(children: rows));
   }
 
 }
