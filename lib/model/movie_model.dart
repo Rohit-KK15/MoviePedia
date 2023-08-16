@@ -8,6 +8,7 @@ class Movie {
   String launchOn;
   List<dynamic> cast;
   List<dynamic> crew;
+  int ms;
 
   Movie({
     required this.id,
@@ -19,6 +20,7 @@ class Movie {
     required this.launchOn,
     required this.cast,
     required this.crew,
+    required this.ms,
   });
 
   Map<String, dynamic> toMap() {
@@ -32,6 +34,7 @@ class Movie {
       'launchOn': launchOn,
       'cast': cast != null ? cast.join(',') : null,
       'crew': crew != null ? crew.join(',') : null,
+      'ms': ms,
     };
   }
 
@@ -46,6 +49,7 @@ class Movie {
       launchOn: map['launchOn'],
       cast: map['cast'] != null ? map['cast'].split(',') : null,
       crew: map['crew'] != null ? map['crew'].split(',') : null,
+      ms: map['ms'],
     );
   }
 }
