@@ -104,7 +104,7 @@ class _WatchLaterState extends State<WatchLater> {
                 )
               ],
             ),
-            const SizedBox(height: 50,),
+            const SizedBox(height: 20,),
             Expanded(
                 child: SingleChildScrollView(
                     child: _buildDisplayRows())
@@ -169,11 +169,18 @@ class _WatchLaterState extends State<WatchLater> {
 
                   ),
                   const SizedBox(height: 10,),
-                  Text(
-                    _displayData[j]['name'],
-                    style: GoogleFonts.breeSerif(
-                       color: Colors.white,
-                       fontSize: 15.0
+                  SizedBox(
+                    width: 100,
+                    child: Center(
+                      child: Text(
+                        _displayData[j]['name'],
+                        style: GoogleFonts.breeSerif(
+                           color: Colors.white,
+                           fontSize: 15.0,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   )
                 ],
@@ -185,6 +192,7 @@ class _WatchLaterState extends State<WatchLater> {
 
       rows.add(
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: rowChildren,
         ),
       );
