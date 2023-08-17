@@ -98,13 +98,30 @@ class _StartUpState extends State<StartUp> {
       backgroundColor: Colors.black,
       appBar: AppBar(
           backgroundColor: Colors.transparent,
-          title: Text(
-              'MoviePedia 🎬',
-              style: GoogleFonts.bebasNeue(
-                color: Colors.red.withOpacity(0.5),
-                fontSize: 29.0,
-                fontWeight: FontWeight.bold,
-              )
+          title: Row(
+            children:[
+
+              Container(
+                height: 29,
+                width: 29,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  image: const DecorationImage(
+                      image: AssetImage('assets/images/moviepedia.jpg')
+                  )
+                ),
+              ),
+              const SizedBox(width: 10,),
+              Text(
+                'MoviePedia ',
+                style: GoogleFonts.bebasNeue(
+                  color: Colors.red.withOpacity(0.7),
+                  fontSize: 29.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+            ] 
           )
       ),
       // body: Navigator.push(context, pages[_currentIndex]),
