@@ -105,7 +105,10 @@ class _WatchLaterState extends State<WatchLater> {
               ],
             ),
             const SizedBox(height: 50,),
-            _buildDisplayRows()
+            Expanded(
+                child: SingleChildScrollView(
+                    child: _buildDisplayRows())
+            )
           ],
         ),
       )
@@ -187,9 +190,7 @@ class _WatchLaterState extends State<WatchLater> {
       );
     }
 
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-        child: Column(children: rows));
+    return Column(children: rows);
   }
 
 }
