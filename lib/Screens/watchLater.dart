@@ -105,10 +105,28 @@ class _WatchLaterState extends State<WatchLater> {
               ],
             ),
             const SizedBox(height: 20,),
-            Expanded(
-                child: SingleChildScrollView(
-                    child: _buildDisplayRows())
-            )
+            if(_displayData.isNotEmpty)...[
+              Expanded(
+                  child: SingleChildScrollView(
+                      child: _buildDisplayRows())
+              )
+            ]else ...[
+              const SizedBox(
+                height: 400,
+                child: Center(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'No Movies/TVShows in your WatchList',
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15
+                        ),
+                      ),
+                    )
+                ),
+              )
+            ]
           ],
         ),
       )
