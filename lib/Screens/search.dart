@@ -52,6 +52,13 @@ class _SearchPageState extends State<SearchPage> {
     }
   }
 
+  void clearSearch(){
+    _searchController.text = "";
+    setState(() {
+
+    });
+  }
+
   String loadrating(@required double rate) {
     return((rate).toStringAsFixed(1));
   }
@@ -85,16 +92,20 @@ class _SearchPageState extends State<SearchPage> {
                         fontSize: 20,
                         fontWeight: FontWeight.bold
                     ),
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                       hintText: 'Search',
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         color: Colors.white54
                       ),
                       border: InputBorder.none,
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Ionicons.search_outline,
                         color: Colors.white,
-                      ) // Hide the default border
+                      ),
+                      suffixIcon: IconButton(
+                        onPressed: clearSearch,
+                        icon: const Icon(Ionicons.close_outline,color: Colors.white),
+                      )// Hide the default border
                     ),
                   ),
                 ),
