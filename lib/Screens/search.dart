@@ -20,6 +20,7 @@ class _SearchPageState extends State<SearchPage> {
   String page="Search";
   late TMDB tmdb;
 
+
   @override
   void initState(){
     super.initState();
@@ -58,6 +59,7 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
@@ -99,64 +101,65 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
           ),
-          if(_searchResults.isNotEmpty)...[
-            Expanded(
-              child: ListView.builder(
-                itemCount: _searchResults.length,
-                itemBuilder: (context, index) {
-                  Map movie = _searchResults[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 10, left: 10),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 1,
-                            color: Colors.white60
-                          )
-                        )
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 15.0),
-                        child: ListTile(
-                          title: modified_text(text: movie['name'] ?? movie['title'], colour: Colors.white, size: 20.0),
-                          subtitle: modified_text(text: movie['release_date'] ?? movie['first_air_date'] ?? 'N/A', colour: Colors.grey, size: 15.0),
-                          leading: movie['poster_path'] != null
-                              ? Image.network(
-                            'https://image.tmdb.org/t/p/w92${movie['poster_path']}',
-                            width: 50,
-                            height: 75,
-                            fit: BoxFit.cover,
-                          ):
-                          // Container(
-                          //   width: 50,
-                          //   height: 75,
-                          //   color: Colors.grey,
-                          // ),
-                          Image.asset(
+          if(_searchController.text.isNotEmpty)...[
+            if(_searchResults.isNotEmpty)...[
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _searchResults.length,
+                  itemBuilder: (context, index) {
+                    Map movie = _searchResults[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 10, left: 10),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(
+                                    width: 1,
+                                    color: Colors.white60
+                                )
+                            )
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 15.0),
+                          child: ListTile(
+                            title: modified_text(text: movie['name'] ?? movie['title'], colour: Colors.white, size: 20.0),
+                            subtitle: modified_text(text: movie['release_date'] ?? movie['first_air_date'] ?? 'N/A', colour: Colors.grey, size: 15.0),
+                            leading: movie['poster_path'] != null
+                                ? Image.network(
+                              'https://image.tmdb.org/t/p/w92${movie['poster_path']}',
+                              width: 50,
+                              height: 75,
+                              fit: BoxFit.cover,
+                            ):
+                            // Container(
+                            //   width: 50,
+                            //   height: 75,
+                            //   color: Colors.grey,
+                            // ),
+                            Image.asset(
                               'assets/images/moviepedia.jpg',
                               width: 50,
                               height: 75,
                               fit: BoxFit.cover,
-                          ),
-                          trailing: Container(
-                            width: 70,
-                            height: 25,
-                            decoration: BoxDecoration(
-                                color: Colors.grey.shade800,
-                                borderRadius: BorderRadius.circular(10)
                             ),
-                            child: Center(
-                              child: Text(
+                            trailing: Container(
+                              width: 70,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                  color: Colors.grey.shade800,
+                                  borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: Center(
+                                child: Text(
                                   movie['release_date'] != null ? '#Movie' : '#TVShow',
                                   style: const TextStyle(
-                                    color: Colors.redAccent,
-                                    fontSize: 13
+                                      color: Colors.redAccent,
+                                      fontSize: 13
                                   ),
+                                ),
                               ),
                             ),
-                          ),
-                          onTap: (){
+                            onTap: (){
                               int id = movie['id'];
                               Navigator.push(context,MaterialPageRoute(builder: (context) =>Description(
                                 name: movie['release_date'] == null ? movie['name'] : movie['title'],
@@ -171,18 +174,46 @@ class _SearchPageState extends State<SearchPage> {
                                 cast: const [],
                                 crew: const [],
                               )));
-                          },
+                            },
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
+            ]
+            else ...[
+              const Center(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      '☹ No results Found',
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 15
+                      ),
+                    ),
+                  )
+              )
+              // const Text('Empty',style: TextStyle(color: Colors.white),)
+            ]
           ]
           else ...[
-            // const Text('Empty',style: TextStyle(color: Colors.white),)
+            const Center(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    '" Explore The World Of Cinema 📽 "',
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 15
+                    ),
+                  ),
+                )
+            )
           ]
+
         ],
       ),
     );
