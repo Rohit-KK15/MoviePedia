@@ -176,7 +176,7 @@ class _SearchPageState extends State<SearchPage> {
                                 name: movie['release_date'] == null ? movie['name'] : movie['title'],
                                 desc: movie['overview'],
                                 bannerurl: movie['backdrop_path'] != null ? 'https://image.tmdb.org/t/p/w500${movie['backdrop_path']}' : 'https://image.tmdb.org/t/p/w92${movie['poster_path']}',
-                                posterurl: 'https://image.tmdb.org/t/p/w500 ${movie['poster_path']}',
+                                posterurl: 'https://image.tmdb.org/t/p/w500${movie['poster_path']}',
                                 vote: loadrating(movie['vote_average']),
                                 launch_on: movie['release_date'] ?? movie['first_air_date'],
                                 id: id,
