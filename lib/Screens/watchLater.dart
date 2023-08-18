@@ -117,7 +117,7 @@ class _WatchLaterState extends State<WatchLater> {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'No Movies/TVShows in your WatchList',
+                        'Your WatchList is Empty 🧐 !!',
                         style: TextStyle(
                             color: Colors.grey,
                             fontSize: 15
@@ -169,19 +169,19 @@ class _WatchLaterState extends State<WatchLater> {
                 });
               },
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(18),
               height: 270,
               child: Column(
                 children: [
                   Container(
                     height: 200,
-                    width: 150,
+                    width: 140,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
                           image: NetworkImage(
-                              'https://image.tmdb.org/t/p/w500'+_displayData[j]['posterUrl']
-                          )
+                              'https://image.tmdb.org/t/p/w500'+_displayData[j]['posterUrl'],
+                          ),fit: BoxFit.fill
                       )
                     ),
 
